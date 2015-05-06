@@ -6,29 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>928</width>
-    <height>483</height>
+    <width>1236</width>
+    <height>644</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Prendre Connaissance de Mu0</string>
+   <string>Dialog</string>
   </property>
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>40</y>
-     <width>151</width>
-     <height>221</height>
+     <x>420</x>
+     <y>30</y>
+     <width>141</width>
+     <height>261</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>270</y>
-     <width>231</width>
+     <x>1100</x>
+     <y>600</y>
+     <width>131</width>
      <height>23</height>
     </rect>
    </property>
@@ -36,44 +36,12 @@
     <string>PushButton</string>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>40</y>
-     <width>241</width>
-     <height>221</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-     <weight>75</weight>
-     <italic>true</italic>
-     <bold>true</bold>
-    </font>
-   </property>
-  </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit_3">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>401</y>
-     <width>221</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="plainText">
-    <string>ZONE TABLEAUX
-</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>450</y>
-     <width>181</width>
+     <x>20</x>
+     <y>600</y>
+     <width>121</width>
      <height>23</height>
     </rect>
    </property>
@@ -84,10 +52,10 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>700</x>
-     <y>450</y>
-     <width>201</width>
-     <height>23</height>
+     <x>440</x>
+     <y>300</y>
+     <width>101</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -97,10 +65,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>-30</y>
-     <width>731</width>
-     <height>381</height>
+     <x>590</x>
+     <y>0</y>
+     <width>621</width>
+     <height>311</height>
     </rect>
    </property>
    <property name="text">
@@ -110,8 +78,21 @@
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>270</y>
+     <x>130</x>
+     <y>220</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>150</y>
      <width>91</width>
      <height>23</height>
     </rect>
@@ -120,34 +101,58 @@
     <string>PushButton</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
+  <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>311</y>
-     <width>221</width>
-     <height>131</height>
+     <x>100</x>
+     <y>130</y>
+     <width>113</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>130</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>190</y>
+     <width>188</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_2"/>
+    </item>
+   </layout>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>listWidget</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButton_3</sender>
-   <signal>clicked()</signal>
-   <receiver>Apprendre</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>580</x>
-     <y>458</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>489</x>
-     <y>446</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

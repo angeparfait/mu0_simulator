@@ -1,32 +1,33 @@
 #ifndef APPRENDRE_H
 #define APPRENDRE_H
 
-#include <QtGui/QDialog>
-#include <QtCore>
-#include <QtGui>
+#include <QDialog>
 
 namespace Ui {
-    class Apprendre;
+class Apprendre;
 }
 
-class Apprendre : public QDialog {
+class Apprendre : public QDialog
+{
     Q_OBJECT
-    Q_DISABLE_COPY(Apprendre)
+
 public:
     explicit Apprendre(QWidget *parent = 0);
-    virtual ~Apprendre();
-
-protected:
-    virtual void changeEvent(QEvent *e);
-
-private:
-    Ui::Apprendre *m_ui;
-    QGraphicsScene *scene;
-    QTimer *timer;
+    ~Apprendre();
 
 private slots:
-    void on_pushButton_4_clicked();
     void on_pushButton_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_4_clicked();
+
+private:
+    Ui::Apprendre *ui;
+    void writefile();
+    void readfile();
 };
 
 #endif // APPRENDRE_H

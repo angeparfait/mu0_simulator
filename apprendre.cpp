@@ -1,118 +1,94 @@
 #include "apprendre.h"
 #include "ui_apprendre.h"
-#include "macirculation.h"
-#include <QPixmap>
-#include <QPainter>
-
-int couner = 0;
-bool on_off = true;
+#include <QString>
+#include <QFile>
+#include <QTextStream>
 
 Apprendre::Apprendre(QWidget *parent) :
     QDialog(parent),
-    m_ui(new Ui::Apprendre)
+    ui(new Ui::Apprendre)
 {
-
-    m_ui->setupUi(this);
-    m_ui->label->setPixmap(QPixmap(":/new/prefix1/mu0"));
-    m_ui->pushButton_2->setText("Sauvegarde");
-    m_ui->pushButton_3->setText("Retour Menu");
-    m_ui->pushButton->setText("Comprendre l'ex�cution");
-    m_ui->pushButton_4->setText("pause");
-    m_ui->listWidget->addItem("LDA");
-    m_ui->listWidget->addItem("STO");
-    m_ui->listWidget->addItem("ADD");
-    m_ui->listWidget->addItem("SUB");
-    m_ui->listWidget->addItem("OR");
-    m_ui->listWidget->addItem("AND");
-    m_ui->listWidget->addItem("XOR");
-    m_ui->listWidget->addItem("ROL");
-    m_ui->listWidget->addItem("LDR");
-    m_ui->listWidget->addItem("JGE");
-    m_ui->listWidget->addItem("GNE");
-    m_ui->listWidget->addItem("STP");
-    m_ui->listWidget->addItem("JMP");
-    m_ui->listWidget->addItem("LDI");
-    m_ui->listWidget->addItem("STI");
-    m_ui->listWidget->addItem("XPC");
-
-
-
-scene = new QGraphicsScene(this);
-m_ui->graphicsView->setScene(scene);
-m_ui->graphicsView->setRenderHint(QPainter::Antialiasing);
-scene->setSceneRect(-100,-100,100,100);
-QPen mypen = QPen(Qt::yellow);
-
-QLineF TopLine(scene->sceneRect().topLeft(), scene->sceneRect().topRight());
-QLineF LeftLine(scene->sceneRect().topLeft(), scene->sceneRect().bottomLeft());
-QLineF RightLine(scene->sceneRect().topRight(), scene->sceneRect().bottomRight());
-QLineF BottomLine(scene->sceneRect().bottomLeft(), scene->sceneRect().bottomRight());
-
-scene->addLine(TopLine,mypen);
-scene->addLine(LeftLine,mypen);
-scene->addLine(RightLine,mypen);
-scene->addLine(BottomLine,mypen);
-
-
-int circule = 1;
-for(int i = 0; i < circule; i++)
-{
-    MaCirculation *circule = new MaCirculation();
-    scene->addItem(circule);
-}
-
-timer = new QTimer(this);
-connect(timer,SIGNAL(timeout()), scene, SLOT(advance()));
-timer->start(10);
-
-
-
-
-
-
+    ui->setupUi(this);
+    ui->pushButton_4->setText("Afficher Code Saisi");
+    ui->label->setPixmap(QPixmap(":/new/prefix1/mu01"));
+    ui->pushButton->setText("Quitter");
+    ui->pushButton_5->setText("Exécuter");
+    ui->label_2->setText("Saisir Instruction");
+    ui->label_3->setText("Mon code saisi");
+    ui->pushButton_2->setText("Sauvegarder");
+    ui->pushButton_3->setText("Exécuter");
+    /*ui->listWidget->addItem("LDA");
+    ui->listWidget->addItem("STO");
+    ui->listWidget->addItem("ADD");
+    ui->listWidget->addItem("SUB");
+    ui->listWidget->addItem("OR");
+    ui->listWidget->addItem("AND");
+    ui->listWidget->addItem("XOR");
+    ui->listWidget->addItem("ROL");
+    ui->listWidget->addItem("LDR");
+    ui->listWidget->addItem("JGE");
+    ui->listWidget->addItem("GNE");
+    ui->listWidget->addItem("STP");
+    ui->listWidget->addItem("JMP");
+    ui->listWidget->addItem("LDI");
+    ui->listWidget->addItem("STI");
+    ui->listWidget->addItem("XPC");*/
+    int n = 50;
+    for(int i = 0; i<n ; i++)
+    {
+        ui->listWidget->addItem(QString::number(i) + "instruction");
+    }
 }
 
 Apprendre::~Apprendre()
 {
-    delete m_ui;
-}
-
-void Apprendre::changeEvent(QEvent *e)
-{
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        m_ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
+    delete ui;
 }
 
 void Apprendre::on_pushButton_clicked()
 {
-    on_off = true;
-    while(on_off == true){
-
-    QApplication::processEvents();
-    QPixmap ship(":/new/prefix1/mu0");
-    QPixmap rotate(ship.size());
-
-    QPainter p(&rotate);
-    p.setRenderHint(QPainter::Antialiasing);
-    p.setRenderHint(QPainter::SmoothPixmapTransform);
-    p.setRenderHint(QPainter::HighQualityAntialiasing);
-    p.translate(rotate.size().width() / 2, rotate.size().height() / 2);
-    p.rotate(couner);
-    p.translate(-rotate.size().width() / 2, rotate.size().height() / 2);
-
-    p.drawPixmap(0, 0, ship);
-    p.end();
-    m_ui->label->setPixmap(rotate);
-    couner++;
+    QApplication::exit();
 }
+
+void Apprendre::on_pushButton_3_clicked()
+{
+
+        if("LDA"){
+        ui->label->setPixmap(QPixmap(":/new/prefix1/lda"));}
+        //ui->label->setPixmap(QPixmap(":/new/prefix1/mu0");
+
+}
+
+
+void Apprendre::on_pushButton_2_clicked()
+{
+    writefile();
+}
+
+void Apprendre::writefile()
+{
+    QString str = ui->lineEdit->text();
+    QString filename = "sauvegarde.txt";
+    QFile file(filename);
+    file.open(QIODevice::WriteOnly|QIODevice::Text);
+    QTextStream out(&file);
+    out << str << endl;
+    file.close();
 }
 
 void Apprendre::on_pushButton_4_clicked()
 {
-    on_off = false;
+    readfile();
 }
+
+void Apprendre::readfile()
+{
+    QString filename1 = "sauvegarde.txt";
+    QFile file1(filename1);
+    file1.open(QIODevice::ReadOnly|QIODevice::Text);
+    QTextStream in(&file1);
+    QString str1 = in.readLine();
+    ui->lineEdit_2->setText(str1);
+    file1.close();
+}
+
